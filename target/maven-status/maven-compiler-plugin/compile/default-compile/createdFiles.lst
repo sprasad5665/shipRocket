@@ -1,9 +1,0 @@
-com\paymentStimulator\model\TransferRefund\OrderResponse.class
-com\paymentStimulator\controller\AccountDetailsController.class
-com\paymentStimulator\controller\ApplicationUtil.class
-com\paymentStimulator\vo\OrderDetailsVo.class
-com\paymentStimulator\model\TransferRefund\OrderDetailsRequest.class
-com\paymentStimulator\model\TransferRefund\OrderItems.class
-com\paymentStimulator\controller\ExecutorApplication.class
-com\paymentStimulator\model\TransferRefund\JSONUtils.class
-com\paymentStimulator\model\TransferRefund\RestApiConfig.class
