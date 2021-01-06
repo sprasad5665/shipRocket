@@ -1,0 +1,50 @@
+https://shiprocket-integrate.herokuapp.com/createOrder
+
+{
+  "order_id": "3172",
+  "order_date": "2021-01-05 13:25",
+  "pickup_location": "delhi",
+  "comment": "fast and furious",
+  "billing_customer_name": "rahul",
+  "billing_last_name": "",
+  "billing_address": "malviya nagar",
+  "billing_address_2": "",
+  "billing_city": "new delhi",
+  "billing_pincode": "502110",
+  "billing_state": "delhi",
+  "billing_country": "india",
+  "billing_email": "raushanra4@gmail.com",
+  "billing_phone": "9721562372",
+  "shipping_is_billing": 1,
+  "shipping_customer_name": "",
+  "shipping_last_name": "",
+  "shipping_address": "",
+  "shipping_address_2": "",
+  "shipping_city": "",
+  "shipping_pincode": "",
+  "shipping_country": "",
+  "shipping_state": "",
+  "shipping_email": "",
+  "shipping_phone": "",
+  "order_items": [
+    {
+      "name": "shoes",
+      "sku": "shoes123",
+      "units": "2",
+      "selling_price": "1500",
+      "discount": "100",
+      "tax": "50",
+      "hsn": ""
+    }
+  ],
+  "payment_method": "COD",
+  "shipping_charges": "",
+  "giftwrap_charges": "",
+  "transaction_charges": "",
+  "total_discount": "",
+  "sub_total": "2950",
+  "length": "10",
+  "breadth": "10",
+  "height": "10",
+  "weight": "1.5"
+}

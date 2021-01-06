@@ -11,7 +11,7 @@ import com.paymentStimulator.model.TransferRefund.OrderResponse;
 import com.paymentStimulator.model.TransferRefund.RestApiConfig;
 
 @RestController
-public class AccountDetailsController {
+public class OrderDetailsController {
 
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();

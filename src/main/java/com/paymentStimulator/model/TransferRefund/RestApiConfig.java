@@ -49,7 +49,7 @@ public class RestApiConfig<T> {
 			responseMessage = response.getEntity(String.class);
 			if (requestMessageObj instanceof OrderItems) {
 				parsedResponseMessage = (OrderResponse) JSONUtils.parse(responseMessage, OrderResponse.class);
-				
+
 			}
 		} catch (UniformInterfaceException e) {
 			LOGGER.error("ERROR {}", e);
@@ -78,6 +78,44 @@ public class RestApiConfig<T> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return parsedResponseMessage;
+	}
+
+	public Object doGet(String URI) {
+		String responseMessage = null;
+		Object parsedResponseMessage = null;
+		try {
+
+			ClientConfig clientConfig = new DefaultClientConfig();
+			clientConfig.getClasses().add(JacksonJsonProvider.class);
+
+			Client client = Client.create(clientConfig);
+
+			WebResource webResource = client.resource(URI);
+			String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjExMjA2NTksImlzcyI6Imh0dHBzOi8vYXBpdjIuc2hpcHJvY2tldC5pbi92MS9leHRlcm5hbC9hdXRoL2xvZ2luIiwiaWF0IjoxNjA5ODI5NTQ0LCJleHAiOjE2MTA2OTM1NDQsIm5iZiI6MTYwOTgyOTU0NCwianRpIjoiMHZBUlR2NG1ObTNVbDhSRSJ9.kCpx36ZqGm-dV31GdoKa7Lt0VvxApnKPq5ZD-O6oeR8";
+
+			ObjectMapper mapper = new ObjectMapper();
+			ClientResponse response = webResource.header("Authorization", token).accept(MediaType.APPLICATION_JSON)
+					.type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+
+			LOGGER.info("response received from server {}", response);
+			LOGGER.info("response status from server {}", response.getStatus());
+
+			if (response.getStatus() != 200) {
+
+			}
+
+			LOGGER.debug("Output from Server .... \n");
+			responseMessage = response.getEntity(String.class);
+			parsedResponseMessage = (OrderResponse) JSONUtils.parse(responseMessage, OrderResponse.class);
+
+		} catch (UniformInterfaceException e) {
+			LOGGER.error("ERROR {}", e);
+		} catch (ClientHandlerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
