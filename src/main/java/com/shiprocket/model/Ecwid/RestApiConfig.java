@@ -1,4 +1,4 @@
-package com.paymentStimulator.model.TransferRefund;
+package com.shiprocket.model.Ecwid;
 
 import javax.ws.rs.core.MediaType;
 
@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shiprocket.model.ship.ShipRocket;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientHandlerException;
 import com.sun.jersey.api.client.ClientResponse;
@@ -32,8 +33,8 @@ public class RestApiConfig<T> {
 			WebResource webResource = client.resource(URI);
 			String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjExMjA2NTksImlzcyI6Imh0dHBzOi8vYXBpdjIuc2hpcHJvY2tldC5pbi92MS9leHRlcm5hbC9hdXRoL2xvZ2luIiwiaWF0IjoxNjA5ODI5NTQ0LCJleHAiOjE2MTA2OTM1NDQsIm5iZiI6MTYwOTgyOTU0NCwianRpIjoiMHZBUlR2NG1ObTNVbDhSRSJ9.kCpx36ZqGm-dV31GdoKa7Lt0VvxApnKPq5ZD-O6oeR8";
 
-			LOGGER.debug("requestMessageObj .... {}", requestMessageObj.toString());
 			ObjectMapper mapper = new ObjectMapper();
+			LOGGER.info("requestMessageObj .... {}", mapper.writeValueAsString(requestMessageObj));
 			ClientResponse response = webResource.header("Authorization", token).accept(MediaType.APPLICATION_JSON)
 					.type(MediaType.APPLICATION_JSON)
 					.post(ClientResponse.class, mapper.writeValueAsString(requestMessageObj));
@@ -42,14 +43,17 @@ public class RestApiConfig<T> {
 			LOGGER.info("response status from server {}", response.getStatus());
 
 			if (response.getStatus() != 200) {
+				
+				LOGGER.info("some issue has occured with order Please do manual entry");
 
-			}
+			} else {
 
-			LOGGER.debug("Output from Server .... \n");
-			responseMessage = response.getEntity(String.class);
-			if (requestMessageObj instanceof OrderItems) {
-				parsedResponseMessage = (OrderResponse) JSONUtils.parse(responseMessage, OrderResponse.class);
+				LOGGER.debug("Output from Server .... \n");
+				responseMessage = response.getEntity(String.class);
+				if (requestMessageObj instanceof ShipRocket) {
+					parsedResponseMessage = (OrderResponse) JSONUtils.parse(responseMessage, OrderResponse.class);
 
+				}
 			}
 		} catch (UniformInterfaceException e) {
 			LOGGER.error("ERROR {}", e);
@@ -111,7 +115,7 @@ public class RestApiConfig<T> {
 
 			LOGGER.debug("Output from Server .... \n");
 			responseMessage = response.getEntity(String.class);
-			parsedResponseMessage = (OrderResponse) JSONUtils.parse(responseMessage, OrderResponse.class);
+			parsedResponseMessage = (OrderDetailsEcwid) JSONUtils.parse(responseMessage, OrderDetailsEcwid.class);
 
 		} catch (UniformInterfaceException e) {
 			LOGGER.error("ERROR {}", e);

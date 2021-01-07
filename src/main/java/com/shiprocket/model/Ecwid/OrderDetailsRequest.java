@@ -1,4 +1,4 @@
-package com.paymentStimulator.model.TransferRefund;
+package com.shiprocket.model.Ecwid;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.paymentStimulator.model.TransferRefund.OrderDetailsEcwid;
-import com.paymentStimulator.model.TransferRefund.OrderItems;
-import com.paymentStimulator.model.TransferRefund.RestApiConfig;
-import com.paymentStimulator.model.TransferRefund.webHookItems;
+import com.shiprocket.model.Ecwid.OrderDetailsEcwid;
+import com.shiprocket.model.Ecwid.OrderItems;
+import com.shiprocket.model.Ecwid.RestApiConfig;
+import com.shiprocket.model.Ecwid.webHookItems;
 
 @RestController
 public class OrderWebhook {
@@ -19,11 +19,16 @@ public class OrderWebhook {
 
 	}
 
-	private OrderDetailsEcwid hitApi(String orderId, String storeId) {
+	private void hitApi(String orderId, String storeId) {
 		RestApiConfig<OrderItems> restApiConfig = new RestApiConfig<OrderItems>();
-		OrderDetailsEcwid customerDetailsEnquiryApiResponse = (OrderDetailsEcwid) restApiConfig
-				.doGet("https://app.ecwid.com/api/v3/" + storeId + "/orders/" + orderId + "?token=token");
-		return customerDetailsEnquiryApiResponse;
+//		OrderDetailsEcwid orderDetailsEcwidApiResponse = (OrderDetailsEcwid) restApiConfig
+//				.doGet("https://app.ecwid.com/api/v3/" + storeId + "/orders/" + orderId + "?token=token");
+		OrderDetailsEcwid orderDetailsEcwidApiResponse = (OrderDetailsEcwid) restApiConfig
+				.doGet("http://localhost:3000/data");
+		System.out.println("received payload from server with details " + orderDetailsEcwidApiResponse.getId());
+		OrderDetailsController OrderDetailsController = new OrderDetailsController();
+		OrderDetailsController.shipRocketOrderDetails(orderDetailsEcwidApiResponse);
+		//return orderDetailsEcwidApiResponse;
 
 	}
 

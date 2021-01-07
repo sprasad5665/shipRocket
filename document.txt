@@ -35,6 +35,15 @@ https://shiprocket-integrate.herokuapp.com/createOrder
       "discount": "100",
       "tax": "50",
       "hsn": ""
+    },
+{
+      "name": "shoes2",
+      "sku": "shoes123",
+      "units": "2",
+      "selling_price": "1500",
+      "discount": "100",
+      "tax": "50",
+      "hsn": ""
     }
   ],
   "payment_method": "COD",

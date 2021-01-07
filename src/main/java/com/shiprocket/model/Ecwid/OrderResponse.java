@@ -1,4 +1,4 @@
-package com.paymentStimulator.model.TransferRefund;
+package com.shiprocket.model.Ecwid;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
