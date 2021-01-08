@@ -24,7 +24,7 @@ public class OrderWebhook {
 //		OrderDetailsEcwid orderDetailsEcwidApiResponse = (OrderDetailsEcwid) restApiConfig
 //				.doGet("https://app.ecwid.com/api/v3/" + storeId + "/orders/" + orderId + "?token=token");
 		OrderDetailsEcwid orderDetailsEcwidApiResponse = (OrderDetailsEcwid) restApiConfig
-				.doGet("http://localhost:3000/data");
+				.doGet("https://6f17ba76175f.ngrok.io/data");
 		System.out.println("received payload from server with details " + orderDetailsEcwidApiResponse.getId());
 		OrderDetailsController OrderDetailsController = new OrderDetailsController();
 		OrderDetailsController.shipRocketOrderDetails(orderDetailsEcwidApiResponse);
